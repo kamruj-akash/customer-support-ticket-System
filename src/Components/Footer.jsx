@@ -2,7 +2,7 @@ import { FaFacebook, FaLinkedinIn, FaXTwitter } from "react-icons/fa6";
 
 const Footer = () => {
   return (
-    <footer className="bg-black text-gray-300 px-8 py-12 ">
+    <footer className="bg-black text-gray-300 px-8 py-12 mt-10">
       <div className="grid grid-cols-2 md:grid-cols-5 gap-8 mx-auto container">
         <div className="col-span-2">
           <h3 className="text-white font-semibold mb-2">CS — Ticket System</h3>
