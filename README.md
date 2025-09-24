@@ -6,5 +6,5 @@
 - How can you share state between components in React?
 - How is event handling done in React?
 
-git push origin main # First repo
-git push secondary main # Second repo
+git push origin main
+git push secondary main
