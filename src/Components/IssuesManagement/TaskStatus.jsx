@@ -1,15 +1,6 @@
+import { BiError } from "react-icons/bi";
 import { FaCheck } from "react-icons/fa";
 import { toast } from "react-toastify";
-const showToastMessage = () => {
-  toast.success("Complete Task", {
-    position: "top-right",
-  });
-};
-const showToastMessage2 = () => {
-  toast.success("Remove Task", {
-    position: "top-right",
-  });
-};
 
 const TaskStatus = ({
   ticketData,
@@ -21,10 +12,17 @@ const TaskStatus = ({
 }) => {
   // handle complete task
   const completeTaskHandler = (getData) => {
-    showToastMessage();
     const newTicketData = ticketData.filter((elem) => elem != getData);
     setTicketData(newTicketData);
+
+    const changeToResolved = allData.find((elem) => elem == getData);
+    changeToResolved.status = "Resolved";
     setResolvedData([...resolvedData, getData]);
+
+    // toast massage
+    toast.success("Complete Task", {
+      position: "top-right",
+    });
   };
 
   // handle remove task
@@ -33,7 +31,11 @@ const TaskStatus = ({
     setAllData(remainingAllData);
     const remainingResolvedData = resolvedData.filter((elem) => elem != data);
     setResolvedData(remainingResolvedData);
-    showToastMessage2();
+
+    //toast mas
+    toast.success("Remove Task Successful", {
+      position: "top-right",
+    });
   };
 
   return (
@@ -42,28 +44,43 @@ const TaskStatus = ({
         <h1 className="text-2xl font-semibold text-[#34485A] mb-1">
           Customer Tickets
         </h1>
-        {ticketData.length == 0 && <p>No resolved tasks yet.</p>}
       </div>
 
-      {ticketData.map((data, index) => (
-        <div key={index} className="bg-white rounded-2xl p-4">
-          <h1 className="text-[#001931] font-medium text-[18px]">
-            {data.subject}
-          </h1>
-          <button
-            onClick={() => completeTaskHandler(data)}
-            className="w-full mt-3 bg-green-600 py-3 rounded-md text-xl font-semibold text-white cursor-pointer"
-          >
-            Complete
-          </button>
-        </div>
-      ))}
+      <div>
+        {ticketData.length == 0 && (
+          <div className="bg-white p-5 rounded-xl flex items-center justify-center gap-2 flex-col ">
+            <BiError className="text-5xl"></BiError>
+            <p>No In-Process tasks yet.</p>
+          </div>
+        )}
+
+        {ticketData.map((data, index) => (
+          <div key={index} className="bg-white rounded-2xl p-4">
+            <h1 className="text-[#001931] font-medium text-[18px]">
+              {data.subject}
+            </h1>
+            <button
+              onClick={() => completeTaskHandler(data)}
+              className="w-full mt-3 bg-green-600 py-3 rounded-md text-xl font-semibold text-white cursor-pointer"
+            >
+              Complete
+            </button>
+          </div>
+        ))}
+      </div>
 
       <div>
-        <h1 className="md:col-span-2 text-2xl font-semibold text-[#34485A] mb-1">
+        <h1 className="md:col-span-2 text-2xl font-semibold text-[#34485A] mb-5">
           Resolved Task
         </h1>
-        {resolvedData.length == 0 && <p>No resolved tasks yet.</p>}
+
+        {resolvedData.length == 0 && (
+          <div className="bg-white p-5 rounded-xl flex items-center justify-center gap-2 flex-col ">
+            <BiError className="text-5xl"></BiError>
+            <p>No Resolved tasks yet.</p>
+          </div>
+        )}
+
         {resolvedData.map((data, index) => (
           <div
             key={index}
