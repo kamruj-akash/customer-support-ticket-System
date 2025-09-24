@@ -7,7 +7,7 @@ import Navbar from "./Components/Navbar";
 import Spinner from "./Components/Spinner";
 
 const fetchTicketData = async () => {
-  const res = fetch("../public/data.json");
+  const res = fetch("data.json");
   return (await res).json();
 };
 function App() {
