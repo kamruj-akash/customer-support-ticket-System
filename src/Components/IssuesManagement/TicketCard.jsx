@@ -2,12 +2,17 @@ import { FaCalendarAlt } from "react-icons/fa";
 import { GoDotFill } from "react-icons/go";
 import { toast } from "react-toastify";
 
-const TicketCard = ({ data, ticketData, setTicketData }) => {
+const TicketCard = ({ data, ticketData, setTicketData, resolvedData }) => {
   const handleTask = (dataSend) => {
     dataSend.status = "In-Progress";
 
-    if (ticketData.find((elem) => elem == dataSend)) {
-      // showError();
+    if (resolvedData.find((elem) => elem == dataSend))
+      [
+        toast.warn(`Ticket status is Resolved`, {
+          position: "top-right",
+        }),
+      ];
+    else if (ticketData.find((elem) => elem == dataSend)) {
       toast.warn(`Ticket status Already in ${dataSend.status}`, {
         position: "top-right",
       });

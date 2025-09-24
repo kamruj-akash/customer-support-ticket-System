@@ -25,6 +25,7 @@ const IssuesManagement = ({ fetchPromise }) => {
           </h1>
           {allData.map((data) => (
             <TicketCard
+              resolvedData={resolvedData}
               ticketData={ticketData}
               setTicketData={setTicketData}
               data={data}
