@@ -1,9 +1,25 @@
 import { FaCalendarAlt } from "react-icons/fa";
 import { GoDotFill } from "react-icons/go";
+import { toast } from "react-toastify";
 
-const TicketCard = ({ data }) => {
+const TicketCard = ({ data, ticketData, setTicketData }) => {
+  const handleTask = (dataSend) => {
+    dataSend.status = "In-Progress";
+    showToastMessage();
+    setTicketData([...ticketData, dataSend]);
+  };
+
+  const showToastMessage = () => {
+    toast.success("Ticket Added To In-Process", {
+      position: "top-right",
+    });
+  };
+
   return (
-    <div className=" bg-white p-4 rounded-xl shadow-md">
+    <div
+      onClick={() => handleTask(data)}
+      className=" bg-white p-4 rounded-xl shadow-md cursor-pointer"
+    >
       <div className="flex justify-between items-center">
         <h1 className="font-semibold text-[#001931] text-[16px]">
           {data.subject}
