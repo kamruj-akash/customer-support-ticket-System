@@ -2,17 +2,11 @@ import { FaCalendarAlt } from "react-icons/fa";
 import { GoDotFill } from "react-icons/go";
 import { toast } from "react-toastify";
 
-const TicketCard = ({ data, ticketData, setTicketData, resolvedData }) => {
+const TicketCard = ({ data, ticketData, setTicketData }) => {
   const handleTask = (dataSend) => {
     dataSend.status = "In-Progress";
 
-    if (resolvedData.find((elem) => elem == dataSend))
-      [
-        toast.warn(`Ticket status is Resolved`, {
-          position: "top-right",
-        }),
-      ];
-    else if (ticketData.find((elem) => elem == dataSend)) {
+    if (ticketData.find((elem) => elem == dataSend)) {
       toast.warn(`Ticket status Already in ${dataSend.status}`, {
         position: "top-right",
       });
@@ -40,10 +34,8 @@ const TicketCard = ({ data, ticketData, setTicketData, resolvedData }) => {
         <button
           className={`flex justify-center items-center py-2 px-3 rounded-2xl ${
             data.status == "Open"
-              ? "bg-blue-200 text-blue-700"
-              : data.status == "In-Progress"
-              ? "bg-yellow-200 text-yellow-700"
-              : data.status == "Resolved" && "bg-green-200 text-green-700"
+              ? "bg-green-200 text-green-700"
+              : data.status == "In-Progress" && "bg-yellow-200 text-yellow-700"
           }  `}
         >
           <GoDotFill className="text-xl"></GoDotFill>

@@ -19,6 +19,9 @@ const TaskStatus = ({
     changeToResolved.status = "Resolved";
     setResolvedData([...resolvedData, getData]);
 
+    const remainingAllData = allData.filter((elem) => elem != getData);
+    setAllData(remainingAllData);
+
     // toast massage
     toast.success("Complete Task", {
       position: "top-right",
@@ -27,8 +30,6 @@ const TaskStatus = ({
 
   // handle remove task
   const MdRemoveDoneHandler = (data) => {
-    const remainingAllData = allData.filter((elem) => elem != data);
-    setAllData(remainingAllData);
     const remainingResolvedData = resolvedData.filter((elem) => elem != data);
     setResolvedData(remainingResolvedData);
 
