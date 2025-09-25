@@ -47,7 +47,7 @@ const TaskStatus = ({
         </h1>
       </div>
 
-      <div>
+      <div className="flex flex-col gap-5">
         {ticketData.length == 0 && (
           <div className="bg-white p-5 rounded-xl flex items-center justify-center gap-2 flex-col ">
             <BiError className="text-5xl"></BiError>
