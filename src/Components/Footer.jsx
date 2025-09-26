@@ -57,7 +57,7 @@ const Footer = () => {
         </div>
       </div>
       <div className="text-center text-gray-500 text-sm mt-8">
-        © 2025 Ph — Assignment System. All rights reserved.
+        © 2025 CS — Ticket System. All rights reserved.
       </div>
     </footer>
   );
